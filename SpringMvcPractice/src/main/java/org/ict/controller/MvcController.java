@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,4 +86,69 @@ public class MvcController {
 		
 		return "ctofform";
 	}
+	
+	// 위와 같은 방식으로 bmi측정페이지를 만들어보겠습니다.
+	// 폼과 결과페이지로 구성해주시면 되고
+	// bmi 공식은 체중 / (키(m) ^ 2 ) 으로 나오는 결과입니다.
+	
+	@RequestMapping(value="/bmi", method=RequestMethod.POST)
+	
+	public String bmi(double height, int weight, Model model) {
+		
+		double bmi = weight / ((height/100) * (height/100));
+		model.addAttribute("bmi", bmi);
+		model.addAttribute("height", height);
+		model.addAttribute("weight", weight);
+		
+		return "bmi";
+		
+	}
+	
+	@RequestMapping(value="/bmi", method=RequestMethod.GET)
+	
+	public String bmiform() {
+		
+		return "bmiform";
+	}
+	
+	// PathVariable을 이용하면 url 패턴만으로도 특정 파라미터를 받아올 수 있습니다.
+	// rest방식으로 url을 처리할때 주로 사용하는 방식입니다.
+	// /pathtest/숫자 중 숫자 위치에 온 것은 page라는 변수값으로 간주
+	@RequestMapping(value="/pathtest/{page}")
+	// int page 왼쪽에 @PathVariable을 붙여서 처리해야 연동됨
+	public String pathTest(@PathVariable int page, Model model) {
+		
+		// 받아온 page 변수를 path.jsp로 보내주세요.
+		// path.jsp에는 {path} 페이지 조회중입니다 라는 문장이 뜨게 해주세요.
+		model.addAttribute("page", page);
+		
+		return "path";
+	}
+	
+	// ctof 로직을 PathVariable을 적용해서 만들어주세요.
+	// ctofpv.jsp에 결과가 나오면 됩니다.
+	@RequestMapping(value="/goctofpv/{cel}")
+	
+	public String ctofpv(@PathVariable int cel, Model model){
+		
+		double faren = cel * 1.8 + 32;
+		model.addAttribute("faren", faren);
+		model.addAttribute("cel", cel);
+		
+		return "ctofpv";
+	}
+	
+	// void 타입 컨트롤러의 특징
+	// void 타입은 return구문을 사용할 수 없는 만큼
+	// view파일의 이름을 그냥 메서드이름.jsp로 자동 지정 해버립니다.
+	// 간단한 작성은 void타입으로 해도 되지만 메서드명에 제약이 생겨서 잘 안씁니다.
+	@RequestMapping(value="/voidreturn")
+	public void voidTest(int num, Model model) {
+		System.out.println("void 컨트롤러는 리턴구문이 필요없습니다.");
+		// 1. 파라미터를 아무거나 받아오게 임의로 설정해주세요.
+		// 2. 현 메서드에 맞는 view파일을 생성해주세요.
+		// 3. 1에서 얻어온 파라미터를 2에 출력되도록 설정해주세요.
+		model.addAttribute("num" , num);
+	}
+	
 }
