@@ -1,0 +1,10 @@
+package org.ict.controller.di.classfile;
+
+public class Satellite {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

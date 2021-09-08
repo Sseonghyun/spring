@@ -1,0 +1,37 @@
+package org.ict.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+// 빈 컨테이너에 넣어주세요. ( 등록된 컨트롤러만 실제로 작용됨 )
+@Controller
+public class MvcController {
+
+	// 기본주소 (localhost:8181)뒤에 /goA를 붙이면 goA()메서드 실행
+	@RequestMapping(value="/goA")
+	// return 타입이 String인 경우 결과 페이지를 지정할 수 있음
+	public String goA() {
+		System.out.println("goA 주소 접속 감지");
+		// 결과 페이지는 views 폴더 아래의 A.jsp
+		return "A";
+	}
+	// goB를 생성해주세요.
+	// 결과 페이지는 B.jsp입니다.
+	@RequestMapping(value="/goB")
+	public String goB() {
+		System.out.println("goB 주소 접속 감지");
+		return "B";
+	}
+	
+	// goC는 파라미터를 입력받을수 있도록 해보겠습니다.
+	@RequestMapping(value="/goC")
+	// 주소 뒤 ? cNum=값 형태로 들어오는 값을 로직 내 cNum으로 처리합니다.
+	// 들어온 파라미터를 .jsp파일로 전달하기 위해서는
+	// Model model을 파라미터에 추가로 선언해줍니다.
+	public String goC(int cNum) {
+		System.out.println("주소로 전달받은 값 : " + cNum);
+		
+		// 전달받은 cNum을 C.jsp에 출력하는 로직을 작성해주세요.
+		return "C";
+	}
+}
