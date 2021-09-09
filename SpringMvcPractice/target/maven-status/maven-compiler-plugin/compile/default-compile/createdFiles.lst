@@ -1,0 +1,3 @@
+org\ict\controller\HomeController.class
+org\ict\domain\TestVO.class
+org\ict\controller\MvcController.class
