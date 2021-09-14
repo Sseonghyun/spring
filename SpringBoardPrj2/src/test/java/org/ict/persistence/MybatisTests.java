@@ -23,9 +23,9 @@ import lombok.extern.log4j.Log4j;
 public class MybatisTests {
 	
 	
-		// Connection => OJDBC ´ã´ç
-		// DataSource => È÷Ä«¸® ´ã´ç
-		// SqlSessionFactory => mybatis ´ã´ç
+		// Connection => OJDBC ï¿½ï¿½ï¿½
+		// DataSource => ï¿½ï¿½Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½
+		// SqlSessionFactory => mybatis ï¿½ï¿½ï¿½
 		@Autowired
 		private DataSource dataSource;
 		
