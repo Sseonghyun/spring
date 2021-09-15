@@ -59,12 +59,29 @@ public class BoardMapperTests {
 		
 	}
 	
-	@Test
+	// @Test
 	public void testSelect() {
 		// 있는 글번호 입력시 데이터 출력
 		mapper.select((long)6L);
 	}
 	
+	// @Test
+	public void testDelete() {
+		// mapper.delete() 호출시 삭제
+		mapper.delete((long)6L);
+	}
+	
+	@Test
+	public void testUpdate() {
+		BoardVO vo = new BoardVO();
+		
+		vo.setTitle("새타이틀");
+		vo.setContent("새본문");
+		vo.setWriter("새글쓴이");
+		vo.setBno(4L);
+		
+		mapper.update(vo);
+	}
 }
 
 

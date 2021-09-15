@@ -3,6 +3,8 @@ C:\eclipse\spring_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearc
 \SpringBoardPrj2\src\main\java
 C:\eclipse\spring_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2573646022.index
 \SpringMvcPractice\src\main\java
+C:\eclipse\spring_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2329328147.index
+\SpringBoardPrj2\src\main\java
 C:\eclipse\spring_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2223824882.index
 \MyFirstSpring\src\main\java
 C:\eclipse\spring_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2821105743.index
