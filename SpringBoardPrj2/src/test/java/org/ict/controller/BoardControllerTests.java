@@ -95,7 +95,7 @@ public class BoardControllerTests {
 		log.info(resultPage);
 	}
 	
-	@Test
+	// @Test
 	public void testModify() throws Exception {
 		
 		// 실제로 실행될 쿼리문과 비교해서 데이터를 날려주시면 됩니다.
@@ -112,4 +112,17 @@ public class BoardControllerTests {
 		// 변수에 저장된 값을 다시 로깅을 해서 출력합니다.
 		log.info(resultPage);
 	}
+	
+	@Test
+	public void testGetListPaging() throws Exception {
+		// get방식 접속
+		// .param을 이용해 criteria 관련 정보 전달
+		String resultPage = mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
+				.param("pageNum", "150")
+				.param("amount", "15")
+				).andReturn().getModelAndView().getViewName();
+		// 변수에 저장된 값을 다시 로깅을 해서 출력합니다.
+		log.info(resultPage);
+	}
+	
 }

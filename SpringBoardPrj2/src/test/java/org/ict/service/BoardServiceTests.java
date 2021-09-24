@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 
 import org.ict.domain.BoardVO;
+import org.ict.domain.Criteria;
 import org.ict.mapper.BoardMapperTests;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,7 +51,7 @@ public class BoardServiceTests {
 	
 	// @Test
 	public void testGetList() {
-		service.getList();
+		service.getList("");
 	}
 	
 	// @Test
@@ -70,8 +71,14 @@ public class BoardServiceTests {
 		service.modify(vo);
 	}
 	
-	@Test
+	// @Test
 	public void testRemove() {
 		service.remove(2L);
+	}
+	
+	@Test
+	public void testGetListPaging() {
+		Criteria cri = new Criteria(216, 10);
+		service.getListPaging(cri);
 	}
 }

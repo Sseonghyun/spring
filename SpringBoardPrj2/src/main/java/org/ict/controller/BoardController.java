@@ -4,6 +4,7 @@ import java.lang.ProcessHandle.Info;
 import java.util.List;
 
 import org.ict.domain.BoardVO;
+import org.ict.domain.Criteria;
 import org.ict.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 	
+	/*
 	@GetMapping("/list") // Get방식으로만 주소 연결 // 19번라인으로인해 board/list로 됨.
 	public void list(Model model, String keyword) {
 		log.info(keyword);
@@ -45,6 +47,21 @@ public class BoardController {
 		
 		// 1. views 하위에 경로에 맞게 폴더 및.jsp  파일 생성
 		// 2. 부트스트랩을 적용해 게시글 목록을 화면에 표시.
+	}*/
+	
+	// 페이징 처리가 되는 리스트 메서드를 새로 연결합니다.
+	// 페이징 처리용 메서드는 기존과 접속 주소는 같으나
+	// 기존에 받던 자료에 더해서, Criteria를 추가로 더 입력받습니다.
+	@GetMapping("/list")
+	// Criteria를 파라미터에 선언해 pageNum, amount 처리
+	public void list(Criteria cri, Model model) {
+		
+		// pageNum, amount로 전달된 자료를 활요해 게시글 목록을 가져오기
+		List<BoardVO> boards = service.getListPaging(cri);
+		
+		model.addAttribute("list", boards);
+		// board/list.jsp로 자동연결이 되므로
+		// 리턴구문은 따로 필요없습니다.
 	}
 	
 	// 아래 주소로 데이터를 보내줄 수 있는 form을 작성해주세요.
@@ -64,7 +81,8 @@ public class BoardController {
 		// model.addAttribute()를 쓴다면
 		// 일반 이동이 아닌 redirect 이동시는 데이터가 소실됩니다.
 		// 이를 막기 위해 rttr.addFlashAttribute로 대체합니다.
-		rttr.addFlashAttribute("result", vo.getBno()); // result란 이름으로 vo.getBno()를 넘겨준다.
+		rttr.addFlashAttribute("bno", vo.getBno());
+		rttr.addFlashAttribute("success", "register");
 		
 		// views폴더 하위 board폴더의 list.jsp 출력
 		// redirect로 이동시킬때는 "redirect:파일명"
