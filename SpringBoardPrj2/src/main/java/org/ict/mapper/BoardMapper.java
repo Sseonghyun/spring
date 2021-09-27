@@ -49,4 +49,5 @@ public interface BoardMapper {
 	// 몇 페이지의 글을 조회할지 정보를 같이 쿼리문에 전송할 수 있습니다.
 	public List<BoardVO> getListPaging(Criteria cri);
 	
+	public int getTotalBoard();
 }

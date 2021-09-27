@@ -125,4 +125,5 @@ public class BoardControllerTests {
 		log.info(resultPage);
 	}
 	
+	
 }
