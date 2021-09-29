@@ -3,5 +3,6 @@
 <aop-project name="SpringMvcPractice"/>
 <aop-project name="JdbcMybatisPrj"/>
 <aop-project name="MyFirstSpring"/>
+<aop-project name="prj_rest"/>
 <aop-project name="SpringBoardPrj2"/>
 </aop-reference-model>

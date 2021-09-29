@@ -11,6 +11,7 @@ import org.ict.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -130,6 +131,7 @@ public class BoardController {
 		log.info("받아온객체 : " + vo); // 디버깅
 		// .jsp파일로 vo보내기 위해서
 		model.addAttribute("vo", vo);
+		
 		// board폴더의 get.jsp로 연결
 		return "/board/get";
 		
@@ -158,13 +160,22 @@ public class BoardController {
 	// BoardVO로 받아서 수정한 다음 수정한 글의 디테일페이지로 넘어오면 됩니다.
 	// 수정 후는 디테일페이지로 redirect 해주세요.
 	@PostMapping("modify")
-	public String modify(BoardVO vo, RedirectAttributes rttr) {
+	public String modify(BoardVO vo, RedirectAttributes rttr, SearchCriteria cri) {
 		log.info("수정로직입니다" + vo);
+		log.info("검색어" + cri.getPageNum());
+		log.info("검색조건" + cri.getSearchType());
+		log.info("페이지번호" + cri.getKeyword());
 		service.modify(vo);
+		
+		rttr.addAttribute("bno", vo.getBno());
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
 		
 		// 상세 페이지는 bno가 파라미터로 주어져야 하기 때문에
 		// 아래와 같이 리턴구문을 작성해야 합니다.
-		return "redirect:/board/get?bno=" + vo.getBno();
+		return "redirect:/board/get";
 		
 	}
 	
